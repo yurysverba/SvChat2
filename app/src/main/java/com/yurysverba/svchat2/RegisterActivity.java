@@ -40,14 +40,11 @@ public class RegisterActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Register");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        auth = FirebaseAuth.getInstance();
         username = findViewById(R.id.userName);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         btn_register = findViewById(R.id.register_button);
-
-        auth = FirebaseAuth.getInstance();
-
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,49 +63,44 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
             });
+    }
+    private void register ( final String username, String email, String password){
+        auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser firebaseUser = auth.getCurrentUser();
+                            String userid = firebaseUser.getUid();
 
-        private void register ( final String username, String email, String password){
-            auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                FirebaseUser firebaseUser = auth.getCurrentUser();
-                                String userid = firebaseUser.getUid();
+                            reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
 
-                                reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+                            HashMap<String, String> hashMap = new HashMap<>();
+                            hashMap.put("id", userid);
+                            hashMap.put("username", username);
+                            hashMap.put("imageURL", "default");
 
-                                HashMap<String, String> hashMap = new HashMap<>();
-                                hashMap.put("id", userid);
-                                hashMap.put("username", username);
-                                hashMap.put("imageURL", "default");
+                            reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
 
-                                reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-
-                                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                            startActionMode(intent);
-                                            finish();
-                                        } else {
-                                            Toast.makeText(RegisterActivity.this, "Вы не зарегтстрироавли свою почту", Toast.LENGTH_SHORT).show();
-
-                                        }
+                                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        Toast.makeText(RegisterActivity.this, "Вы не зарегтстрироавли свою почту", Toast.LENGTH_SHORT).show();
 
                                     }
 
+                                }
 
-                                });
 
-                            }
+                            });
+
                         }
-                    });
-        }
-
-
-
-
+                    }
+                });
     }
 }
