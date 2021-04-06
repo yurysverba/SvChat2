@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SvChat2</string>
+    <string name="register_activity_title">Создать пользователя</string>
+    <string name="hint_user_name">Имя пользователя</string>
+    <string name="hint_password">Пароль</string>
+    <string name="hint_email">Email</string>
+    <string name="register_button_text">Создать</string>
+    <string name="login_button_text">Войти</string>
+    <string name="login_activity_title">Авторизация пользователя</string>
 </resources>
