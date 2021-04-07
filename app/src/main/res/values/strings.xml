@@ -8,4 +8,5 @@
     <string name="login_button_text">Войти</string>
     <string name="login_activity_title">Авторизация пользователя</string>
     <string name="start_activity_text">SvChat</string>
+    <string name="action_logout">Выйти</string>
 </resources>
