@@ -9,4 +9,8 @@
     <string name="login_activity_title">Авторизация пользователя</string>
     <string name="start_activity_text">SvChat</string>
     <string name="action_logout">Выйти</string>
+    <string name="avatar_username">username</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="blank_fragment_chats">Ваш чат</string>
+    <string name="blank_fragment_users">Ваши пользователи</string>
 </resources>
