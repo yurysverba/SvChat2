@@ -19,14 +19,17 @@ import com.yurysverba.svchat2.R;
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
-    public static final int MSG_TYPE_LEFT = 0;
-    public static final int MSG_TYPE_RIGHT = 1;
-    private final Context mContext;
-    private final List<Chat> mChat;
-    FirebaseUser fuser;
+
+    public static  final int MSG_TYPE_LEFT = 0;
+    public static  final int MSG_TYPE_RIGHT = 1;
+
+    private Context mContext;
+    private List<Chat> mChat;
     private String imageurl;
 
-    public MessageAdapter(Context mContext, List<Chat> mChat, String imageurl) {
+    FirebaseUser fuser;
+
+    public MessageAdapter(Context mContext, List<Chat> mChat, String imageurl){
         this.mChat = mChat;
         this.mContext = mContext;
         this.imageurl = imageurl;
@@ -50,11 +53,21 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         Chat chat = mChat.get(position);
 
         holder.show_message.setText(chat.getMessage());
-        
-        if (imageurl.equals("default")) {
+
+        if (imageurl.equals("default")){
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
         } else {
             Glide.with(mContext).load(imageurl).into(holder.profile_image);
+        }
+
+        if (position == mChat.size()-1){
+            if (chat.isIsseen()){
+                holder.text_seen.setText("Seen");
+            } else {
+                holder.text_seen.setText("Delivered");
+            }
+        } else {
+            holder.text_seen.setVisibility(View.GONE);
         }
 
     }
@@ -64,29 +77,28 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         return mChat.size();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        fuser = FirebaseAuth.getInstance().getCurrentUser();
-        if (mChat.get(position).getSender().equals(fuser.getUid())) {
-            return MSG_TYPE_RIGHT;
-        } else {
-            return MSG_TYPE_LEFT;
-        }
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public  class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView show_message;
         public ImageView profile_image;
+        public TextView text_seen;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             show_message = itemView.findViewById(R.id.show_message);
             profile_image = itemView.findViewById(R.id.profile_image);
-
+            text_seen = itemView.findViewById(R.id.text_seen);
         }
     }
 
-
+    @Override
+    public int getItemViewType(int position) {
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
+        if (mChat.get(position).getSender().equals(fuser.getUid())){
+            return MSG_TYPE_RIGHT;
+        } else {
+            return MSG_TYPE_LEFT;
+        }
+    }
 }

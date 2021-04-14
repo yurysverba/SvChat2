@@ -61,7 +61,7 @@
             android:layout_toStartOf="@id/btn_send"
             android:layout_toLeftOf="@id/btn_send"
             android:background="@color/brown_400"
-            android:textColor="#2FFF00"
+            android:textColor="#E9F6E7"
             android:textSize="25sp"/>
 
         <ImageButton

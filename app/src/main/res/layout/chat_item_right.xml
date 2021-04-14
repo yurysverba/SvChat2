@@ -35,6 +35,16 @@
             android:textSize="12sp"
             android:layout_marginEnd="5dp"
             tools:ignore="RelativeOverlap" />
+        <TextView
+            android:id="@+id/text_seen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textColor="@color/blue_grey_200"
+            android:layout_below="@+id/show_message"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            />
     </RelativeLayout>
 
 </RelativeLayout>

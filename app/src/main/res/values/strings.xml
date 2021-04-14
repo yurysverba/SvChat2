@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SvChat2</string>
+    <string name="app_name">SvChat</string>
     <string name="register_activity_title">Создать пользователя</string>
     <string name="hint_user_name">Имя пользователя</string>
     <string name="hint_password">Пароль</string>
@@ -16,4 +16,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile">Profile</string>
+    <string name="reset">Reset</string>
+    <string name="your_email">Your Email</string>
+    <string name="Forgot_you_password">Забыли пароль</string>
 </resources>
