@@ -46,11 +46,10 @@
 
     <RelativeLayout
         android:id="@+id/bottom"
-        android:layout_marginBottom="85dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/brown_400"
+        android:background="#607C4631"
         android:padding="1dp">
 
         <EditText
@@ -60,9 +59,12 @@
             android:layout_centerVertical="true"
             android:layout_toStartOf="@id/btn_send"
             android:layout_toLeftOf="@id/btn_send"
-            android:background="@color/brown_400"
+            android:background="#815B7E8C"
             android:textColor="#E9F6E7"
-            android:textSize="25sp"/>
+            android:textSize="25sp"
+
+
+            />
 
         <ImageButton
             android:id="@+id/btn_send"
@@ -70,7 +72,8 @@
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/ic_action_name" />
+            android:background="@drawable/ic_action_name"
+            />
 
     </RelativeLayout>
 

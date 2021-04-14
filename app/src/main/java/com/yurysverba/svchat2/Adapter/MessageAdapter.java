@@ -1,5 +1,6 @@
 package com.yurysverba.svchat2.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +48,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder holder, int position) {
 
@@ -62,9 +64,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
         if (position == mChat.size()-1){
             if (chat.isIsseen()){
-                holder.text_seen.setText("Seen");
+                holder.text_seen.setText("Прочитано");
             } else {
-                holder.text_seen.setText("Delivered");
+                holder.text_seen.setText("Не прочитано");
             }
         } else {
             holder.text_seen.setVisibility(View.GONE);

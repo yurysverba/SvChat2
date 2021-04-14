@@ -232,7 +232,7 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Token token = snapshot.getValue(Token.class);
-                    Data data = new Data(fuser.getUid(), R.drawable.ic_empty_photo, username+": "+message, "New Message",
+                    Data data = new Data(fuser.getUid(), R.drawable.ic_empty_photo, username+": "+message, "Новое сообщение",
                             userid);
 
                     Sender sender = new Sender(data, token.getToken());
@@ -318,5 +318,11 @@ public class MessageActivity extends AppCompatActivity {
         reference.removeEventListener(seenListener);
         status("offline");
         currentUser("none");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        status("offline");
     }
 }

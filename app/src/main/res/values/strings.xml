@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SvChat</string>
+    <string name="app_name">SvChat2</string>
     <string name="register_activity_title">Создать пользователя</string>
     <string name="hint_user_name">Имя пользователя</string>
     <string name="hint_password">Пароль</string>
